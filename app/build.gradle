@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26'
 
     defaultConfig {
         applicationId "ru.gdgkazan.githubmvp"
@@ -60,7 +60,7 @@ dependencies {
     compile "com.github.orhanobut:hawk:$hawkVersion"
 
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     compile 'com.arello-mobile:moxy:1.5.3'
     compile 'com.arello-mobile:moxy-app-compat:1.5.3'

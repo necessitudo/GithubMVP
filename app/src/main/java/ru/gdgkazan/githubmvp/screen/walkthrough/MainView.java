@@ -4,12 +4,12 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
+/**
+ * Created by olegdubrovin on 14/11/17.
+ */
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface WalkthroughView extends MvpView {
+public interface MainView extends MvpView {
 
- /*   void onActionButtonClick();
+    void itsAlive();
 
-    void startAuthActivity();
-
-    void showBenefit(int index, boolean isLastBenefit);*/
 }

@@ -4,6 +4,7 @@ package ru.gdgkazan.githubmvp.screen.walkthrough;
 import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,9 @@ import ru.gdgkazan.githubmvp.content.Benefit;
 import ru.gdgkazan.githubmvp.utils.PreferenceUtils;
 
 @InjectViewState
-public class WalkthroughPresenter extends BasePresenter<WalkthroughView>  {
+public class WalkthroughPresenter extends MvpPresenter<WalkthroughView> {
 
-    private static final int PAGES_COUNT = 3;
+  /*  private static final int PAGES_COUNT = 3;
 
     private int mCurrentItem = 0;
 
@@ -33,7 +34,7 @@ public class WalkthroughPresenter extends BasePresenter<WalkthroughView>  {
     }
 
     @NonNull
-    public List<Benefit> getBenefits() {
+    static public List<Benefit> getBenefits() {
         return new ArrayList<Benefit>() {
             {
                 add(Benefit.WORK_TOGETHER);
@@ -46,6 +47,8 @@ public class WalkthroughPresenter extends BasePresenter<WalkthroughView>  {
     public  void PageChanged(int selectedPage, boolean fromUser){
 
     }
+
+    public WalkthroughPresenter(){}*/
 
 }
 

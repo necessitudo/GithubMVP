@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import java.util.ArrayList;
@@ -22,8 +24,14 @@ import ru.gdgkazan.githubmvp.widget.PageChangeViewPager;
 /**
  * @author Artur Vasilov
  */
-public class Walkthrough extends AppCompatActivity implements
-        PageChangeViewPager.PagerStateListener, WalkthroughView {
+public class Walkthrough extends MvpAppCompatActivity implements
+        PageChangeViewPager.PagerStateListener, WalkthroughView, MainView {
+
+    @InjectPresenter
+    WalkthroughPresenter mWalkthroughPresenter;
+
+    @InjectPresenter
+    TestPresenter mTestPresenter;
 
    // private static final int PAGES_COUNT = 3;
 
@@ -35,8 +43,7 @@ public class Walkthrough extends AppCompatActivity implements
 
     //private int mCurrentItem = 0;
 
-    @InjectPresenter
-    WalkthroughPresenter mWalkthroughPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class Walkthrough extends AppCompatActivity implements
         setContentView(R.layout.activity_walkthrough);
         ButterKnife.bind(this);
 
-        mPager.setAdapter(new WalkthroughAdapter(getFragmentManager(), mWalkthroughPresenter.getBenefits()));
+        mPager.setAdapter(new WalkthroughAdapter(getFragmentManager(), getBenefits()));
         mPager.setOnPageChangedListener(this);
 
         mActionButton.setText(R.string.next_uppercase);
@@ -67,7 +74,10 @@ public class Walkthrough extends AppCompatActivity implements
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_walkthrough)
     public void onActionButtonClick() {
-       mWalkthroughPresenter.goToNextBenefit();
+
+        Toast.makeText(this, "Ready to you go!", Toast.LENGTH_SHORT).show();
+
+       //mWalkthroughPresenter.goToNextBenefit();
 
         /* if (isLastBenefit()) {
             PreferenceUtils.saveWalkthroughPassed();
@@ -80,7 +90,8 @@ public class Walkthrough extends AppCompatActivity implements
 
     @Override
     public void onPageChanged(int selectedPage, boolean fromUser) {
-     mWalkthroughPresenter.PageChanged(selectedPage, fromUser);
+        Toast.makeText(this, "Ready to you go!", Toast.LENGTH_SHORT).show();
+        //mWalkthroughPresenter.PageChanged(selectedPage, fromUser);
         /*   if (fromUser) {
             mCurrentItem = selectedPage;
             showBenefit(mCurrentItem, isLastBenefit());
@@ -91,7 +102,7 @@ public class Walkthrough extends AppCompatActivity implements
         return mCurrentItem == PAGES_COUNT - 1;
     }*/
 
-  @Override
+  //@Override
     public void showBenefit(int index, boolean isLastBenefit) {
         mActionButton.setText(isLastBenefit ? R.string.finish_uppercase : R.string.next_uppercase);
         if (index == mPager.getCurrentItem()) {
@@ -100,13 +111,13 @@ public class Walkthrough extends AppCompatActivity implements
         mPager.smoothScrollNext(getResources().getInteger(android.R.integer.config_mediumAnimTime));
     }
 
-    @Override
+   // @Override
     public void startAuthActivity() {
         AuthActivity.start(this);
         finish();
     }
 
-/*    @NonNull
+   @NonNull
     private List<Benefit> getBenefits() {
         return new ArrayList<Benefit>() {
             {
@@ -115,8 +126,11 @@ public class Walkthrough extends AppCompatActivity implements
                 add(Benefit.PUBLISH_SOURCE);
             }
         };
-    }*/
+    }
 
 
+    @Override
+    public void itsAlive() {
 
+    }
 }
